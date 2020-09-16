@@ -1,11 +1,20 @@
 import React from "react";
+import { Container, CardColumns } from "react-bootstrap";
 
-const index = () => {
+import CakeCard from "../../components/CakeCard";
+const Homepage = () => {
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <>
+      <Container>
+        <h1>Cake store</h1>
+        <CardColumns>
+          <CakeCard />
+          <CakeCard />
+          <CakeCard />
+        </CardColumns>
+      </Container>
+    </>
   );
 };
 
-export default index;
+export default Homepage;
