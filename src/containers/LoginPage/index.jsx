@@ -3,6 +3,9 @@ import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
+import FacebookLogin from "react-facebook-login";
+import { GoogleLogin } from "react-google-login";
+import { FB_APP_ID, GOOGLE_CLIENT_ID } from "../../config/constants";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -25,6 +28,14 @@ const LoginPage = () => {
     // Validate data if needed
     const { email, password } = formData;
     dispatch(authActions.loginRequest(email, password)); //middleware thunk
+  };
+
+  const loginWithFacebook = (response) => {
+    dispatch(authActions.loginFacebookRequest(response.accessToken));
+  };
+
+  const loginWithGoogle = (response) => {
+    dispatch(authActions.loginGoogleRequest(response.accessToken));
   };
 
   if (isAuthenticated) return <Redirect to="/" />;
@@ -84,9 +95,53 @@ const LoginPage = () => {
                 Loading...
               </Button>
             ) : (
-              <Button className="btn-block" type="submit" variant="primary">
-                Login
-              </Button>
+              <span>
+                <Button className="btn-block" type="submit" variant="primary">
+                  Login
+                </Button>
+
+                {/* logInWithFacebook & google*/}
+
+                <div className="d-flex flex-column text-center">
+                  <FacebookLogin
+                    appId={FB_APP_ID}
+                    fields="name,email,picture"
+                    callback={loginWithFacebook}
+                    icon="fa-facebook"
+                    onFailure={(err) => {
+                      console.log("FB LOGIN ERROR:", err);
+                    }}
+                    containerStyle={{
+                      textAlign: "center",
+                      backgroundColor: "#3b5998",
+                      borderColor: "#3b5998",
+                      flex: 1,
+                      display: "flex",
+                      color: "#fff",
+                      cursor: "pointer",
+                      marginBottom: "3px",
+                    }}
+                    buttonStyle={{
+                      flex: 1,
+                      textTransform: "none",
+                      padding: "12px",
+                      background: "none",
+                      border: "none",
+                    }}
+                  />
+
+                  <GoogleLogin
+                    className="google-btn d-flex justify-content-center"
+                    clientId={GOOGLE_CLIENT_ID}
+                    buttonText="Login with Google"
+                    onSuccess={loginWithGoogle}
+                    onFailure={(err) => {
+                      console.log("GOOGLE LOGIN ERROR:", err);
+                    }}
+                    cookiePolicy="single_host_origin"
+                  />
+                </div>
+              </span>
             )}
             <p>
               Don't have an account? <Link to="/register">Sign Up</Link>
