@@ -9,11 +9,15 @@ import NotFoundPage from "./NotFoundPage";
 import AlertMsg from "./Alert";
 import PrivateRoute from "../Routes/PrivateRoute";
 import AddEditItemPage from "../AddEditItemPage";
+import Cart from "../../components/Cart";
+
+import CheckoutSuccess from "../CheckoutSuccess";
 
 const PublicLayout = () => {
   return (
     <>
       <PublicNavbar />
+      
       <Container>
         <AlertMsg />
         <Switch>
@@ -21,6 +25,14 @@ const PublicLayout = () => {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
           <PrivateRoute exact path="/item/add" component={AddEditItemPage} />
+
+          <PrivateRoute exact path="/item/cart" component={Cart} />
+          <PrivateRoute
+            exact
+            path="/item/checkout_success"
+            component={CheckoutSuccess}
+          />
+
           <PrivateRoute
             exact
             path="/item/edit/:id"

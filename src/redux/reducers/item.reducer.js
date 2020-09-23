@@ -3,6 +3,7 @@ import * as types from "../constants/item.constants";
 const initialState = {
   items: [],
   loading: false,
+  cart: [],
 };
 
 const itemReducer = (state = initialState, action) => {
@@ -42,6 +43,12 @@ const itemReducer = (state = initialState, action) => {
 
     case types.DELETE_ITEM_SUCCESS:
       return { ...state, loading: false, selectedItem: {}, redirectTo: "/" };
+
+    case types.ADD_ITEM_TO_CART_SUCCESS:
+      return { ...state, cart: payload };
+    case types.CHECKOUT_SUCCESS:
+      return { ...state, cart: [], redirectTo: "/item/checkout_success" };
+
     default:
       return state;
   }

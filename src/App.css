@@ -1,3 +1,127 @@
+:root {
+  --main-color: rgb(155, 14, 98);
+}
+
+/**********
+ general
+ ***********/
+body {
+  background-color: rgb(242, 242, 242);
+}
+
+a {
+  color: var(--main-color);
+}
+
 .test {
   color: rgb(222, 1, 22);
+}
+
+/* search bar */
+.search_bar div {
+  position: relative;
+}
+
+.search_bar div input {
+  width: 60vh;
+  border-radius: 5px;
+  border: 1px dotted rgb(155, 14, 98);
+}
+
+.search_icon {
+  position: absolute;
+  color: rgb(155, 14, 98);
+  top: -30px;
+  right: 5px;
+}
+
+.search_icon:hover {
+  opacity: 0.8;
+  color: rgb(175, 34, 118);
+  text-decoration: none;
+}
+
+/* cart-quantity number next to the cart*/
+.parentOfcart-quantity {
+  position: relative;
+}
+.cart-quantity {
+  position: absolute;
+  top: -5px;
+  right: -12px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  height: 22px;
+  width: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+button#dropdown-basic {
+  background: white;
+  color: black;
+  border: 1px solid var(--main-color);
+}
+
+button#dropdown-basic:focus {
+  box-shadow: var(--main-color) 0px 0px 5px;
+}
+
+/* navigation bar menu */
+
+.myNavigationMenuBar a {
+  color: black;
+  border-left: 1px dotted black;
+  padding: 0 25px !important;
+}
+
+/* hotline icon */
+.hotline-icon {
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 50%;
+  height: 5vh;
+  font-size: 20px;
+  width: 3vh;
+  padding: 0vh 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1vw;
+}
+
+
+/* single item - single card */
+.mySingleCard{
+  
+}
+
+/*************
+cart
+**************/
+thead {
+  background-color: rgb(192, 192, 192);
+}
+td {
+  background: white;
+}
+
+tbody td {
+  width: 10px;
+}
+td img {
+  height: 100px;
+}
+
+.tdImgCart {
+  width: 20%;
+}
+/* checkout */
+
+button.checkout {
+  background-color: var(--main-color);
+  color: white;
+  width: 200px;
 }

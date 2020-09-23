@@ -16,6 +16,7 @@ const AddEditItemPage = () => {
     title: "",
     content: "",
     price: "",
+    imgSrc: "",
   });
   const loading = useSelector((state) => state.item.loading);
   const dispatch = useDispatch();
@@ -40,11 +41,11 @@ const AddEditItemPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, content, price } = formData;
+    // const { title, content, price } = formData;
     if (addOrEdit === "Add") {
-      dispatch(itemActions.createNewItem(title, content, price));
+      dispatch(itemActions.createNewItem(formData));
     } else if (addOrEdit === "Edit") {
-      dispatch(itemActions.updateItem(selectedItem._id, title, content, price));
+      dispatch(itemActions.updateItem(params.id, formData));
     }
   };
 
@@ -100,6 +101,18 @@ const AddEditItemPage = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+
+            <Form.Group>
+              <Form.Control
+                type="text"
+                required
+                placeholder="imgSrc"
+                name="imgSrc"
+                value={formData.imgSrc}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
             <Form.Group>
               <Form.Control
                 as="textarea"

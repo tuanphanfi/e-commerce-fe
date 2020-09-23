@@ -16,10 +16,10 @@ const itemsRequest = () => async (dispatch) => {
   }
 };
 
-const createNewItem = (title, content, price) => async (dispatch) => {
+const createNewItem = (formData) => async (dispatch) => {
   dispatch({ type: types.CREATE_ITEM_REQUEST, payload: null });
   try {
-    const res = await api.post("/items", { title, content, price });
+    const res = await api.post("/items", formData);
 
     dispatch({
       type: types.CREATE_ITEM_SUCCESS,
@@ -31,13 +31,13 @@ const createNewItem = (title, content, price) => async (dispatch) => {
   }
 };
 
-const updateItem = (itemId, title, content) => async (dispatch) => {
+const updateItem = (itemId, formData) => async (dispatch) => {
   dispatch({ type: types.UPDATE_ITEM_REQUEST, payload: null });
   try {
     // let formData = new FormData();
     // formData.set("title", title);
     // formData.set("content", content);
-    const res = await api.put(`/items/${itemId}`, { title, content });
+    const res = await api.put(`/items/${itemId}`, formData);
 
     dispatch({
       type: types.UPDATE_ITEM_SUCCESS,
@@ -69,6 +69,19 @@ const setRedirectTo = (redirectTo) => ({
   payload: redirectTo,
 });
 
+const addToCart = (productID, quantity) => async (dispatch) => {
+  const res = await api.post("/users/cart", { productID, quantity });
+  dispatch({ type: types.ADD_ITEM_TO_CART_SUCCESS, payload: res.data.data });
+};
+
+const checkOut = () => async (dispatch) => {
+  try {
+    const res = await api.post("/users/checkout", {});
+    dispatch({ type: types.CHECKOUT_SUCCESS, payload: null });
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const itemActions = {
   itemsRequest,
   // getSingleItem,
@@ -76,4 +89,6 @@ export const itemActions = {
   updateItem,
   deleteItem,
   setRedirectTo,
+  addToCart,
+  checkOut,
 };

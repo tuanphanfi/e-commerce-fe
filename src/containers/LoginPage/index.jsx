@@ -13,8 +13,8 @@ const LoginPage = () => {
   const loading = useSelector((state) => state.auth.loading);
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "minhdh@cs.vn",
+    password: "123",
   });
   const [errors, setErrors] = useState({
     email: "",
