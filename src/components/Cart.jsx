@@ -11,6 +11,12 @@ const Cart = () => {
 
   const cart = useSelector((state) => state.item.cart); //get data from store redux
   console.log(cart);
+
+  
+  const deleteCart = () => {
+    dispatch(itemActions.deleteCart());
+  };
+
   const checkOut = () => {
     dispatch(itemActions.checkOut());
   };
@@ -100,9 +106,9 @@ const Cart = () => {
             className="checkout d-inline-block bg-blue w-25"
             style={{ height: "1500 px" }}
           >
-            {/* <button className="checkout" onClick={checkOut}>
+            <button className="checkout" onClick={deleteCart}>
               Xóa Giỏ Hàng
-            </button> */}
+            </button>
 
             <button className="checkout" onClick={checkOut}>
               Thanh toán

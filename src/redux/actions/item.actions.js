@@ -1,6 +1,7 @@
 import * as types from "../constants/item.constants";
 import api from "../api";
 import { alertActions } from "./alert.actions";
+ 
 
 const itemsRequest = () => async (dispatch) => {
   dispatch({ type: types.ITEM_REQUEST, payload: null });
@@ -82,6 +83,16 @@ const checkOut = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+const deleteCart = () => async (dispatch) => {
+  try {
+    const res = await api.post("/users/deleteCart", {});
+    dispatch({ type: types.DELETE_CART_SUCCESS, payload: null });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const itemActions = {
   itemsRequest,
   // getSingleItem,
@@ -91,4 +102,5 @@ export const itemActions = {
   setRedirectTo,
   addToCart,
   checkOut,
+  deleteCart,
 };

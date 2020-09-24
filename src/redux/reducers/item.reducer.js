@@ -49,6 +49,9 @@ const itemReducer = (state = initialState, action) => {
     case types.CHECKOUT_SUCCESS:
       return { ...state, cart: [], redirectTo: "/item/checkout_success" };
 
+    case types.DELETE_CART_SUCCESS:
+      return { ...state, cart: [] };
+
     default:
       return state;
   }
