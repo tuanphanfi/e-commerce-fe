@@ -33,7 +33,7 @@ const PublicLayout = () => {
             component={CheckoutSuccess}
           />
 
-          <PrivateRoute
+        <PrivateRoute
             exact
             path="/item/edit/:id"
             component={AddEditItemPage}

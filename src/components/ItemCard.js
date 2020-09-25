@@ -14,7 +14,7 @@ const ItemCard = (props) => {
 
   return (
     <div
-      className="mySingleCard d-flex flex-column justify-content-center text-center "
+      className="mySingleCard d-flex flex-column justify-content-center text-center"
       style={{ "max-width": "20vw" }}
     >
       <img variant="top" src={imgSrc} />
@@ -22,7 +22,7 @@ const ItemCard = (props) => {
       <p>{content.substr(0, 51)}...</p>
 
       <p style={{ color: mainColor }}>
-        <strong>{price}</strong>
+        <strong>{price.toLocaleString().replaceAll(",", ".")}</strong>
       </p>
       <button
         style={{

@@ -6,32 +6,32 @@ import { useHistory } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const redirectTo = useSelector((state) => state.item.redirectTo)
-  const history = useHistory()
+  const redirectTo = useSelector((state) => state.item.redirectTo);
+  const history = useHistory();
 
   const cart = useSelector((state) => state.item.cart); //get data from store redux
   console.log(cart);
 
-  
   const deleteCart = () => {
     dispatch(itemActions.deleteCart());
   };
 
   const checkOut = () => {
     dispatch(itemActions.checkOut());
+    history.push("checkout_success");
   };
 
-  useEffect(() => {
-    if (redirectTo) {
-      if (redirectTo === "__GO_BACK__") {
-        history.goBack();
-        dispatch(itemActions.setRedirectTo(""));
-      } else {
-        history.push(redirectTo);
-        dispatch(itemActions.setRedirectTo(""));
-      }
-    }
-  }, [redirectTo]);
+  // useEffect(() => {
+  //   if (redirectTo) {
+  //     if (redirectTo === "__GO_BACK__") {
+  //       history.goBack();
+  //       dispatch(itemActions.setRedirectTo(""));
+  //     } else {
+  //       history.push(redirectTo);
+  //       dispatch(itemActions.setRedirectTo(""));
+  //     }
+  //   }
+  // }, [redirectTo]);
 
   return (
     <div>

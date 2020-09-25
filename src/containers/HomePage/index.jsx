@@ -47,9 +47,9 @@ const Homepage = () => {
                 <Row>
                   {" "}
                   {row.map((item) => (
-                    <Col>
+                    <div className="col">
                       <ItemCard {...item} />
-                    </Col>
+                    </div>
                   ))}
                 </Row>
               );
